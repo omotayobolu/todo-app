@@ -1,1 +1,150 @@
-/*# sourceMappingURL=styles.css.map */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+}
+
+.App {
+  background-image: url(/assets/bg-desktop-light.jpg);
+  background-color: hsl(236deg, 33%, 92%);
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+@media (max-width: 768px) {
+  .App {
+    background-image: url(/assets/bg-mobile-light.jpg);
+    height: 100%;
+    background-size: contain;
+  }
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+}
+@media (max-width: 768px) {
+  header {
+    width: 90%;
+    margin-top: 2rem;
+  }
+}
+header h1 {
+  color: hsl(0deg, 0%, 98%);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 15px;
+}
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.7rem;
+    letter-spacing: 10px;
+  }
+}
+
+.add-item {
+  width: 40%;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 10px;
+}
+@media (max-width: 768px) {
+  .add-item {
+    width: 90%;
+    margin-top: 1.5rem;
+  }
+}
+.add-item input {
+  color: hsl(235deg, 19%, 35%);
+  background-color: hsl(0deg, 0%, 98%);
+  border-radius: 7px;
+  padding: 1rem 1rem 1rem 4rem;
+  width: 100%;
+}
+.add-item button {
+  position: absolute;
+  border: 1px solid hsl(233deg, 11%, 84%);
+  left: 0;
+  top: 50%;
+  transform: translate(100%, -50%);
+  padding: 0.7rem;
+  border-radius: 50%;
+  background: none;
+  text-align: center;
+}
+
+.main-tasks {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  border-radius: 7px;
+  background-color: hsl(0deg, 0%, 98%);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+  .main-tasks {
+    width: 90%;
+    margin-top: 0.8rem;
+  }
+}
+.main-tasks li {
+  position: relative;
+}
+.main-tasks li p {
+  color: hsl(235deg, 19%, 35%);
+  font-weight: 400;
+  border-bottom: 1px solid hsl(234deg, 39%, 85%);
+  padding: 1rem 1rem 1rem 4rem;
+  width: 100%;
+}
+.main-tasks li button {
+  position: absolute;
+  border: 1px solid hsl(233deg, 11%, 84%);
+  left: 0;
+  top: 50%;
+  transform: translate(100%, -50%);
+  padding: 0.7rem;
+  border-radius: 50%;
+  background: none;
+  text-align: center;
+}
+.main-tasks .extra-info {
+  color: hsl(235deg, 19%, 35%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.main-tasks .extra-info .selected-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+@media (max-width: 768px) {
+  .main-tasks .extra-info .selected-content {
+    gap: 0.7rem;
+  }
+}/*# sourceMappingURL=styles.css.map */

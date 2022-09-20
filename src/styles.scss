@@ -3,9 +3,9 @@ $CheckBackground: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 // for light theme
 $VeryLightGray: hsl(0, 0%, 98%);
 $VeryLightGrayishBlue: hsl(236, 33%, 92%);
-$LightGrayishBlue: hsl(233, 11%, 84%);
-$DarkGrayishBlue: hsl(236, 9%, 61%);
-$VeryDarkGrayishBlue: hsl(235, 19%, 35%);
+$LightGrayishBlueLight: hsl(233, 11%, 84%);
+$DarkGrayishBlueLight: hsl(236, 9%, 61%);
+$VeryDarkGrayishBlueLight: hsl(235, 19%, 35%);
 // for dark theme
 $VeryDarkBlue: hsl(235, 21%, 11%);
 $VeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
@@ -14,3 +14,168 @@ $LightGrayishBlueHover: hsl(236, 33%, 92%);
 $DarkGrayishBlue: hsl(234, 11%, 52%);
 $VeryDarkGrayishBlue: hsl(233, 14%, 35%);
 $VeryDarkGrayishBlue: hsl(237, 14%, 26%);
+$BackgroundImage: "/assets";
+$boxShadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+
+$breakpoints: (
+  "mobile": 768px,
+);
+
+@mixin mobile {
+  @media (max-width: map-get($breakpoints, "mobile")) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+}
+
+.App {
+  background-image: url(#{$BackgroundImage}/bg-desktop-light.jpg);
+  background-color: $VeryLightGrayishBlue;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+
+  @include mobile {
+    background-image: url(#{$BackgroundImage}/bg-mobile-light.jpg);
+    height: 100%;
+    background-size: contain;
+  }
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+
+  @include mobile {
+    width: 90%;
+    margin-top: 2rem;
+  }
+
+  h1 {
+    color: $VeryLightGray;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 15px;
+
+    @include mobile {
+      font-size: 1.7rem;
+      letter-spacing: 10px;
+    }
+  }
+}
+
+.add-item {
+  width: 40%;
+  box-shadow: $boxShadow;
+  position: relative;
+  border-radius: 10px;
+
+  @include mobile {
+    width: 90%;
+    margin-top: 1.5rem;
+  }
+
+  input {
+    color: $VeryDarkGrayishBlueLight;
+    background-color: $VeryLightGray;
+    border-radius: 7px;
+    padding: 1rem 1rem 1rem 4rem;
+    width: 100%;
+  }
+
+  button {
+    position: absolute;
+    border: 1px solid $LightGrayishBlueLight;
+    left: 0;
+    top: 50%;
+    transform: translate(100%, -50%);
+    padding: 0.7rem;
+    border-radius: 50%;
+    background: none;
+    text-align: center;
+  }
+}
+
+.main-tasks {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  border-radius: 7px;
+  background-color: $VeryLightGray;
+  box-shadow: $boxShadow;
+
+  @include mobile {
+    width: 90%;
+    margin-top: 0.8rem;
+  }
+
+  li {
+    position: relative;
+
+    p {
+      color: $VeryDarkGrayishBlueLight;
+      font-weight: 400;
+      border-bottom: 1px solid $LightGrayishBlue;
+      padding: 1rem 1rem 1rem 4rem;
+      width: 100%;
+    }
+
+    button {
+      position: absolute;
+      border: 1px solid $LightGrayishBlueLight;
+      left: 0;
+      top: 50%;
+      transform: translate(100%, -50%);
+      padding: 0.7rem;
+      border-radius: 50%;
+      background: none;
+      text-align: center;
+    }
+  }
+
+  .extra-info {
+    color: $VeryDarkGrayishBlueLight;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+
+    .selected-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      @include mobile {
+        gap: 0.7rem;
+      }
+    }
+  }
+}
