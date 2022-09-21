@@ -22,6 +22,11 @@
   }
 }
 
+.default-text {
+  text-align: center;
+  padding: 0.7rem;
+}
+
 p {
   font-size: 0.9rem;
 }
@@ -113,7 +118,7 @@ header h1 {
 .main-tasks li {
   position: relative;
 }
-.main-tasks li p {
+.main-tasks li label {
   color: hsl(235deg, 19%, 35%);
   font-weight: 400;
   border-bottom: 1px solid hsl(234deg, 39%, 85%);

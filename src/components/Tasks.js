@@ -1,53 +1,18 @@
 import React from "react";
+import TaskList from "./TaskList";
 
-const Tasks = () => {
-  const DUMMY_TASKS = [
-    {
-      id: "t1",
-      task: "Wash clothes",
-    },
-    {
-      id: "t2",
-      task: "Wash shoe",
-    },
-    {
-      id: "t3",
-      task: "sleep",
-    },
-    {
-      id: "t4",
-      task: "code",
-    },
-    {
-      id: "t5",
-      task: " mikrimo",
-    },
-    {
-      id: "t6",
-      task: "eat",
-    },
-    {
-      id: "t7",
-      task: "eat",
-    },
-    {
-      id: "t8",
-      task: "eat",
-    },
-  ];
-
+const Tasks = (props) => {
   return (
-    <ul className="main-tasks">
-      {DUMMY_TASKS.map((task) => {
-        return (
-          <li key={task.id}>
-            <p>{task.task}</p>
-            <button></button>
-          </li>
-        );
-      })}
+    <div>
+      {props.tasks.length ? (
+        <TaskList tasks={props.tasks} />
+      ) : (
+        <p className="default-text">No tasks found</p>
+      )}
       <div className="extra-info">
-        <p>5 items left</p>
+        <p>
+          {props.tasks.length} {props.tasks.length > 1 ? "items" : "item"} left
+        </p>
         <div className="selected-content">
           <p>All</p>
           <p>Active</p>
@@ -55,7 +20,7 @@ const Tasks = () => {
         </div>
         <p>Clear Completed</p>
       </div>
-    </ul>
+    </div>
   );
 };
 
