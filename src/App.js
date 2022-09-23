@@ -1,15 +1,14 @@
-import React, { useState, useCallback, useEffect } from "react";
-import AddItem from "./components/AddItem";
+import React, { useState, useEffect } from "react";
+import AddTask from "./components/AddTask";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchTasksHandler = useCallback(async () => {
+  const fetchTasksHandler = async () => {
     setIsLoading(true);
     setError(null);
 
@@ -22,24 +21,28 @@ export default function App() {
         throw new Error("Something went wrong!");
       }
       const data = await response.json();
-      setTasks(data);
+
+      const loadedTasks = [];
+
+      for (const key in data) {
+        loadedTasks.push({
+          id: key,
+          task: data[key].task,
+        });
+      }
+
+      setTasks(loadedTasks);
     } catch (error) {
       setError(error.message);
-    } finally {
-      setIsLoading(false);
     }
-  }, []);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     fetchTasksHandler();
-  }, [fetchTasksHandler]);
+  }, []);
 
   async function AddTaskHandler(task) {
-    const id = tasks.length ? tasks[tasks.length - 1].id + 1 : 1;
-    const myNewTask = { id, checked: false, task };
-    const listTasks = { ...tasks, myNewTask };
-    setTasks(listTasks);
-
     const response = await fetch(
       "https://todo-app-5964a-default-rtdb.firebaseio.com/tasks.json",
       {
@@ -52,29 +55,34 @@ export default function App() {
     );
     const data = await response.json();
     console.log(data);
-    setTasks(data);
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!newTask) return;
-    AddTaskHandler(newTask);
-    setNewTask(newTask);
-  };
+  let content = <p className="default-text">No tasks found</p>;
+
+  if (tasks.length > 0) {
+    content = <Tasks tasks={tasks} />;
+  }
+
+  if (isLoading) {
+    content = <p className="default-text">Loading tasks...</p>;
+  }
+
+  if (error) {
+    content = <p className="default-text">{error}</p>;
+  }
 
   return (
     <div className="App">
       <Header />
-      <AddItem
-        newTask={newTask}
-        setNewTask={setNewTask}
-        onSubmitTask={handleSubmit}
-      />
-      <main className="main-tasks">
-        {isLoading && <p className="default-text">Loading tasks...</p>}
-        {error && <p className="default-text">{error}</p>}
-        {!isLoading && !error && <Tasks tasks={tasks} />}
-      </main>
+      <AddTask onAddTask={AddTaskHandler} setTasks={setTasks} />
+      <section>
+        <button onClick={fetchTasksHandler}>fetch Tasks</button>
+      </section>
+      <main className="main-tasks">{content}</main>
     </div>
   );
 }
+
+/* {isLoading && <p className="default-text">Loading tasks...</p>}
+        {error && <p className="default-text">{error}</p>}
+        {!isLoading && !error && <Tasks tasks={tasks} />} */

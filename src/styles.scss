@@ -35,17 +35,23 @@ $breakpoints: (
   font-size: 18px;
 }
 
+html,
+body {
+  background-color: $VeryLightGrayishBlue;
+}
+
 .App {
   background-image: url(#{$BackgroundImage}/bg-desktop-light.jpg);
-  background-color: $VeryLightGrayishBlue;
   background-repeat: no-repeat;
-  height: 100vh;
-  display: grid;
-  place-items: center;
+  height: 100%;
+  padding: 5% 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   @include mobile {
     background-image: url(#{$BackgroundImage}/bg-mobile-light.jpg);
-    height: 100%;
     background-size: contain;
   }
 }
@@ -76,10 +82,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: 100%;
 
   @include mobile {
-    width: 90%;
+    width: 100%;
     margin-top: 2rem;
   }
 
@@ -98,13 +104,14 @@ header {
 }
 
 .add-item {
-  width: 40%;
+  margin-top: 2rem;
+  width: 100%;
   box-shadow: $boxShadow;
   position: relative;
   border-radius: 10px;
 
   @include mobile {
-    width: 90%;
+    width: 100%;
     margin-top: 1.5rem;
   }
 
@@ -130,39 +137,61 @@ header {
 }
 
 .main-tasks {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 100%;
   border-radius: 7px;
   background-color: $VeryLightGray;
   box-shadow: $boxShadow;
 
   @include mobile {
-    width: 90%;
+    width: 100%;
     margin-top: 0.8rem;
   }
 
-  li {
-    position: relative;
-
-    label {
-      color: $VeryDarkGrayishBlueLight;
-      font-weight: 400;
-      border-bottom: 1px solid $LightGrayishBlue;
-      padding: 1rem 1rem 1rem 4rem;
+  div {
+    ul {
       width: 100%;
-    }
 
-    button {
-      position: absolute;
-      border: 1px solid $LightGrayishBlueLight;
-      left: 0;
-      top: 50%;
-      transform: translate(100%, -50%);
-      padding: 0.7rem;
-      border-radius: 50%;
-      background: none;
-      text-align: center;
+      li {
+        position: relative;
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+        border-bottom: 1px solid $LightGrayishBlue;
+
+        label {
+          color: $VeryDarkGrayishBlueLight;
+          font-weight: 400;
+          padding-left: 1.5rem;
+          margin-left: 1rem;
+        }
+
+        input[type="checkbox"] {
+          -webkit-appearance: none;
+          position: absolute;
+          border: 1px solid $LightGrayishBlueLight;
+          left: 0;
+          top: 50%;
+          transform: translate(100%, -50%);
+          border-radius: 50%;
+          cursor: pointer;
+          width: 1.5rem;
+          height: 1.5rem;
+
+          &:hover {
+            border-color: $CheckBackground;
+          }
+
+          &:checked {
+            background-image: url(#{$BackgroundImage}/icon-check.svg),
+              linear-gradient(150deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+          }
+        }
+      }
     }
   }
 

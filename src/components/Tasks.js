@@ -4,11 +4,11 @@ import TaskList from "./TaskList";
 const Tasks = (props) => {
   return (
     <div>
-      {props.tasks.length ? (
-        <TaskList tasks={props.tasks} />
-      ) : (
-        <p className="default-text">No tasks found</p>
-      )}
+      <ul>
+        {props.tasks.map((task) => (
+          <TaskList key={task.id} task={task.task} />
+        ))}
+      </ul>
       <div className="extra-info">
         <p>
           {props.tasks.length} {props.tasks.length > 1 ? "items" : "item"} left

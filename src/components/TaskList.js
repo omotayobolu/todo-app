@@ -1,13 +1,11 @@
 import React from "react";
-import ListTask from "./ListTask";
 
 const TaskList = (props) => {
   return (
-    <ul>
-      {props.tasks.map((task) => (
-        <ListTask key={task.id} task={task} />
-      ))}
-    </ul>
+    <li>
+      <input type="checkbox" />
+      <label>{props.task}</label>
+    </li>
   );
 };
 
