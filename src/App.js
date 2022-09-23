@@ -42,20 +42,9 @@ export default function App() {
     fetchTasksHandler();
   }, []);
 
-  async function AddTaskHandler(task) {
-    const response = await fetch(
-      "https://todo-app-5964a-default-rtdb.firebaseio.com/tasks.json",
-      {
-        method: "POST",
-        body: JSON.stringify(task),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    console.log(data);
-  }
+  const AddTaskHandler = (task) => {
+    setTasks((prevTasks) => prevTasks.concat(task));
+  };
 
   let content = <p className="default-text">No tasks found</p>;
 
@@ -75,9 +64,6 @@ export default function App() {
     <div className="App">
       <Header />
       <AddTask onAddTask={AddTaskHandler} setTasks={setTasks} />
-      <section>
-        <button onClick={fetchTasksHandler}>fetch Tasks</button>
-      </section>
       <main className="main-tasks">{content}</main>
     </div>
   );
