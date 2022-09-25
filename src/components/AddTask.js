@@ -2,60 +2,35 @@ import React, { useRef, useState } from "react";
 // import Check from "../assets/icon-check.svg";
 // import Cancel from "../assets/icon-cross.svg";
 
-const AddItem = (props) => {
+const AddTask = (props) => {
   const inputRef = useRef("");
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [newTask, setNewTask] = useState("");
 
-  async function AddTaskHandler(taskText) {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(
-        "https://todo-app-5964a-default-rtdb.firebaseio.com/tasks.json",
-        {
-          method: "POST",
-          body: JSON.stringify({ task: taskText }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  const AddTask = (task) => {
+    const id = props.tasks.length
+      ? props.tasks[props.tasks.length - 1].id + 1
+      : 1;
+    const myNewTask = { id, checked: false, task };
+    const tasksList = [...props.tasks, myNewTask];
+    props.setTasks(tasksList);
+  };
 
-      if (!response.ok) {
-        throw new Error("Request failed!");
-      }
-      const data = await response.json();
-
-      const generatedId = data.name;
-      const createdTask = { id: generatedId, task: taskText };
-
-      props.onAddTask(createdTask);
-    } catch (err) {
-      setError(err.message || "Something went wrong!");
-    }
-    setIsLoading(false);
-  }
-
-  const handleSubmit = (e) => {
+  const handleSubmitTask = (e) => {
     e.preventDefault();
-
-    const enteredTask = inputRef.current.value;
-
-    if (enteredTask.trim().length > 0) {
-      AddTaskHandler(enteredTask);
-    }
+    if (!newTask) return;
+    AddTask(newTask);
+    setNewTask("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="add-item">
+    <form onSubmit={handleSubmitTask} className="add-item">
       <input
         type="text"
         placeholder="Create a new todo.."
         ref={inputRef}
-        // value={props.newTask}
-        // onChange={(e) => props.setNewTask(e.target.value)}
+        value={newTask}
+        onChange={(e) => setNewTask(e.target.value)}
         required
       />
       <button></button>
@@ -63,4 +38,4 @@ const AddItem = (props) => {
   );
 };
 
-export default AddItem;
+export default AddTask;
