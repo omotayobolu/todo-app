@@ -22,7 +22,3 @@ export default function App() {
     </div>
   );
 }
-
-/* {isLoading && <p className="default-text">Loading tasks...</p>}
-        {error && <p className="default-text">{error}</p>}
-        {!isLoading && !error && <Tasks tasks={tasks} />} */

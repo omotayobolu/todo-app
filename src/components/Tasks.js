@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import TaskList from "./TaskList";
 
 const Tasks = (props) => {
+  const [active, setActive] = useState("type1");
+
+  const toggleActive = (id) => {
+    setActive(id);
+  };
+
+  const showAllTasks = () => {
+    props.setTasks(props.tasks);
+    toggleActive("type1");
+  };
+
+  const showActiveTasks = () => {
+    const taskLists = props.tasks.filter((task) => !task.checked);
+    props.setTasks(taskLists);
+    toggleActive("type2");
+  };
+
+  const showCompletedTasks = () => {
+    const taskLists = props.tasks.filter((task) => task.checked);
+    props.setTasks(taskLists);
+    toggleActive("type3");
+  };
+
+  const clearCompletedTasks = () => {
+    const taskLists = props.tasks.filter((task) => !task.checked);
+    props.setTasks(taskLists);
+  };
+
   return (
     <React.Fragment>
       <div>
@@ -26,11 +54,29 @@ const Tasks = (props) => {
             left
           </p>
           <div className="selected-content">
-            <p>All</p>
-            <p>Active</p>
-            <p>Completed</p>
+            <p
+              id="type1"
+              className={active === "type1" ? "selected" : ""}
+              onClick={showAllTasks}
+            >
+              All
+            </p>
+            <p
+              id="type2"
+              className={active === "type2" ? "selected" : ""}
+              onClick={showActiveTasks}
+            >
+              Active
+            </p>
+            <p
+              id="type3"
+              className={active === "type3" ? "selected" : ""}
+              onClick={showCompletedTasks}
+            >
+              Completed
+            </p>
           </div>
-          <p>Clear Completed</p>
+          <p onClick={clearCompletedTasks}>Clear Completed</p>
         </div>
       </div>
     </React.Fragment>

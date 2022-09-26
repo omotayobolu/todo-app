@@ -227,14 +227,20 @@ header {
     justify-content: space-between;
     padding: 1rem;
 
+    p {
+      cursor: pointer;
+    }
+
     .selected-content {
       display: flex;
       align-items: center;
       gap: 1rem;
 
-      p {
-        cursor: pointer;
+      .selected {
+        color: $BrightBlue;
+      }
 
+      p {
         &:hover {
           color: $VeryDarkGrayishBlueLight;
         }
