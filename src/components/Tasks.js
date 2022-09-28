@@ -1,57 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import TaskList from "./TaskList";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const Tasks = (props) => {
-  const [active, setActive] = useState("type1");
-
-  const toggleActive = (id) => {
-    setActive(id);
-  };
-
-  const showAllTasks = () => {
-    props.setTasks(props.tasks);
-    toggleActive("type1");
-  };
-
-  const showActiveTasks = () => {
-    const taskLists = props.tasks.filter((task) => !task.checked);
-    props.setTasks(taskLists);
-    toggleActive("type2");
-  };
-
-  const showCompletedTasks = () => {
-    const taskLists = props.tasks.filter((task) => task.checked);
-    props.setTasks(taskLists);
-    toggleActive("type3");
-  };
-
   const clearCompletedTasks = () => {
     const taskLists = props.tasks.filter((task) => !task.checked);
     props.setTasks(taskLists);
   };
 
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+    const items = Array.from(props.tasks);
+    const [reordereditem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reordereditem);
+
+    props.setTasks(items);
+  }
+
   return (
     <React.Fragment>
       <div>
-        <ul>
-          {props.tasks.length ? (
-            props.tasks.map((task) => (
-              <TaskList
-                key={task.id}
-                setTasks={props.setTasks}
-                tasks={props.tasks}
-                task={task}
-                darkMode={props.darkMode}
-              />
-            ))
-          ) : (
-            <p
-              className={props.darkMode ? "default-text dark" : "default-text "}
-            >
-              No tasks found
-            </p>
-          )}
-        </ul>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="lists">
+            {(provided) => (
+              <ul {...provided.droppableProps} ref={provided.innerRef}>
+                {props.tasks.length ? (
+                  props.tasks.map((task, index) => (
+                    <TaskList
+                      key={task.id}
+                      setTasks={props.setTasks}
+                      tasks={props.tasks}
+                      task={task}
+                      darkMode={props.darkMode}
+                      index={index}
+                    />
+                  ))
+                ) : (
+                  <p
+                    className={
+                      props.darkMode ? "default-text dark" : "default-text "
+                    }
+                  >
+                    No tasks found
+                  </p>
+                )}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
 
         <div className={props.darkMode ? "dark extra-info" : "extra-info"}>
           <span>
@@ -61,22 +58,22 @@ const Tasks = (props) => {
           <div className="selected-content">
             <p
               id="type1"
-              className={active === "type1" ? "selected" : ""}
-              onClick={showAllTasks}
+              className={props.active === "type1" ? "selected" : ""}
+              onClick={props.showAllTasks}
             >
               All
             </p>
             <p
               id="type2"
-              className={active === "type2" ? "selected" : ""}
-              onClick={showActiveTasks}
+              className={props.active === "type2" ? "selected" : ""}
+              onClick={props.showActiveTasks}
             >
               Active
             </p>
             <p
               id="type3"
-              className={active === "type3" ? "selected" : ""}
-              onClick={showCompletedTasks}
+              className={props.active === "type3" ? "selected" : ""}
+              onClick={props.showCompletedTasks}
             >
               Completed
             </p>

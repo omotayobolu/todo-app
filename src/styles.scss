@@ -52,13 +52,10 @@ $breakpoints: (
   padding: 5% 25%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
 
   &.dark {
     background-color: $VeryDarkBlue;
     background-image: url(#{$BackgroundImage}/bg-desktop-dark.jpg);
-    height: 100%;
   }
 
   @include tablet {
@@ -79,11 +76,13 @@ $breakpoints: (
 
 .default-text {
   color: $VeryDarkGrayishBlueLight;
+  border-bottom: 1px solid $LightGrayishBlue;
   text-align: center;
   padding: 0.7rem;
 
   &.dark {
     color: $LightGrayishBlue;
+    border-bottom: 1px solid $VeryDarkGrayishBlue1;
   }
 }
 
@@ -110,8 +109,9 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-top: 3rem;
 
-  @include mobile {
+  @include tablet {
     width: 100%;
   }
 
@@ -219,7 +219,6 @@ header {
           padding-left: 1.5rem;
           margin-left: 1rem;
           width: 100%;
-          cursor: pointer;
 
           &.dark {
             color: $LightGrayishBlue;
@@ -323,9 +322,74 @@ header {
         }
       }
 
-      @include mobile {
+      @include tablet {
         gap: 0.7rem;
+        display: none;
       }
     }
+  }
+}
+
+.selected-content-mobile {
+  display: none;
+}
+
+@include tablet {
+  .selected-content-mobile {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: $DarkGrayishBlueLight;
+    background-color: $VeryLightGray;
+    box-shadow: $boxShadow;
+    padding: 1rem 0;
+    border-radius: 5px;
+
+    .selected {
+      color: $BrightBlue;
+
+      &:hover {
+        color: $BrightBlue;
+      }
+    }
+
+    p {
+      cursor: pointer;
+
+      &:hover {
+        color: $VeryDarkGrayishBlueLight;
+      }
+    }
+
+    &.dark {
+      color: $DarkGrayishBlue;
+      background-color: $VeryDarkDesaturatedBlue;
+
+      p {
+        &:hover {
+          color: $LightGrayishBlueHover;
+        }
+      }
+
+      .selected {
+        color: $BrightBlue;
+
+        &:hover {
+          color: $BrightBlue;
+        }
+      }
+    }
+  }
+}
+
+.drag-drop {
+  margin-top: 3rem;
+  text-align: center;
+  color: $DarkGrayishBlueLight;
+
+  &.dark {
+    color: $DarkGrayishBlue;
   }
 }
