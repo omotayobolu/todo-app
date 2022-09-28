@@ -12,8 +12,8 @@ $VeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
 $LightGrayishBlue: hsl(234, 39%, 85%);
 $LightGrayishBlueHover: hsl(236, 33%, 92%);
 $DarkGrayishBlue: hsl(234, 11%, 52%);
-$VeryDarkGrayishBlue: hsl(233, 14%, 35%);
-$VeryDarkGrayishBlue: hsl(237, 14%, 26%);
+$VeryDarkGrayishBlue1: hsl(233, 14%, 35%);
+$VeryDarkGrayishBlue2: hsl(237, 14%, 26%);
 $BackgroundImage: "/assets";
 $boxShadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
 
@@ -42,20 +42,24 @@ $breakpoints: (
   font-size: 18px;
 }
 
-html,
-body {
-  background-color: $VeryLightGrayishBlue;
-}
-
 .App {
   background-image: url(#{$BackgroundImage}/bg-desktop-light.jpg);
+  background-color: $VeryLightGrayishBlue;
   background-repeat: no-repeat;
+  background-size: contain;
   height: 100%;
+  min-height: 100vh;
   padding: 5% 25%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+
+  &.dark {
+    background-color: $VeryDarkBlue;
+    background-image: url(#{$BackgroundImage}/bg-desktop-dark.jpg);
+    height: 100%;
+  }
 
   @include tablet {
     padding: 4% 20%;
@@ -66,6 +70,10 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     padding: 3% 5%;
+
+    &.dark {
+      background-image: url(#{$BackgroundImage}/bg-mobile-dark.jpg);
+    }
   }
 }
 
@@ -73,9 +81,14 @@ body {
   color: $VeryDarkGrayishBlueLight;
   text-align: center;
   padding: 0.7rem;
+
+  &.dark {
+    color: $LightGrayishBlue;
+  }
 }
 
-p {
+p,
+span {
   font-size: 0.9rem;
 }
 
@@ -100,7 +113,6 @@ header {
 
   @include mobile {
     width: 100%;
-    margin-top: 2rem;
   }
 
   h1 {
@@ -114,6 +126,10 @@ header {
       font-size: 1.7rem;
       letter-spacing: 10px;
     }
+  }
+
+  img {
+    cursor: pointer;
   }
 }
 
@@ -135,6 +151,15 @@ header {
     border-radius: 7px;
     padding: 1rem 1rem 1rem 4rem;
     width: 100%;
+
+    &.dark {
+      color: $LightGrayishBlue;
+      background-color: $VeryDarkDesaturatedBlue;
+
+      &::placeholder {
+        color: $VeryDarkGrayishBlue1;
+      }
+    }
   }
 
   button {
@@ -147,6 +172,10 @@ header {
     border-radius: 50%;
     background: none;
     text-align: center;
+
+    &.dark {
+      border: 1px solid $VeryDarkGrayishBlue1;
+    }
   }
 }
 
@@ -158,6 +187,10 @@ header {
   border-radius: 7px;
   background-color: $VeryLightGray;
   box-shadow: $boxShadow;
+
+  &.dark {
+    background-color: $VeryDarkDesaturatedBlue;
+  }
 
   @include mobile {
     width: 100%;
@@ -176,6 +209,10 @@ header {
         display: flex;
         align-items: center;
 
+        &.dark {
+          border-bottom: 1px solid $VeryDarkGrayishBlue1;
+        }
+
         label {
           color: $VeryDarkGrayishBlueLight;
           font-weight: 400;
@@ -183,6 +220,10 @@ header {
           margin-left: 1rem;
           width: 100%;
           cursor: pointer;
+
+          &.dark {
+            color: $LightGrayishBlue;
+          }
         }
 
         input[type="checkbox"] {
@@ -196,6 +237,10 @@ header {
           cursor: pointer;
           width: 1.5rem;
           height: 1.5rem;
+
+          &.dark {
+            border: 1px solid $VeryDarkGrayishBlue1;
+          }
 
           &:hover {
             border-color: $VeryDarkGrayishBlueLight;
@@ -227,8 +272,36 @@ header {
     justify-content: space-between;
     padding: 1rem;
 
+    &.dark {
+      color: $DarkGrayishBlue;
+
+      .selected-content {
+        p {
+          &:hover {
+            color: $LightGrayishBlueHover;
+          }
+        }
+
+        .selected {
+          &:hover {
+            color: $BrightBlue;
+          }
+        }
+      }
+    }
+
     p {
       cursor: pointer;
+
+      &:hover {
+        color: $VeryDarkGrayishBlueLight;
+      }
+
+      &.dark {
+        &:hover {
+          color: $LightGrayishBlueHover;
+        }
+      }
     }
 
     .selected-content {
@@ -238,6 +311,10 @@ header {
 
       .selected {
         color: $BrightBlue;
+
+        &:hover {
+          color: $BrightBlue;
+        }
       }
 
       p {

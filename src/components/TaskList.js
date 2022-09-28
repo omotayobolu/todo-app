@@ -15,13 +15,15 @@ const TaskList = (props) => {
   };
 
   return (
-    <li>
+    <li className={props.darkMode ? "dark" : null}>
       <input
+        className={props.darkMode ? "dark" : null}
         type="checkbox"
         onChange={() => handleCompletedTask(props.task.id)}
         checked={props.task.checked}
       />
       <label
+        className={props.darkMode ? "dark" : null}
         style={
           props.task.checked
             ? { textDecoration: "line-through", color: "hsl(236, 9%, 61%)" }

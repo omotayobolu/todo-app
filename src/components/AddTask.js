@@ -27,13 +27,14 @@ const AddTask = (props) => {
     <form onSubmit={handleSubmitTask} className="add-item">
       <input
         type="text"
+        className={props.darkMode ? "dark" : null}
         placeholder="Create a new todo.."
         ref={inputRef}
         value={newTask}
         onChange={(e) => setNewTask(e.target.value)}
         required
       />
-      <button></button>
+      <button className={props.darkMode ? "dark" : null}></button>
     </form>
   );
 };

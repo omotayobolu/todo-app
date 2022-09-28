@@ -41,18 +41,23 @@ const Tasks = (props) => {
                 setTasks={props.setTasks}
                 tasks={props.tasks}
                 task={task}
+                darkMode={props.darkMode}
               />
             ))
           ) : (
-            <p className="default-text">No tasks found</p>
+            <p
+              className={props.darkMode ? "default-text dark" : "default-text "}
+            >
+              No tasks found
+            </p>
           )}
         </ul>
 
-        <div className="extra-info">
-          <p>
+        <div className={props.darkMode ? "dark extra-info" : "extra-info"}>
+          <span>
             {props.tasks.length} {props.tasks.length > 1 ? "items" : "item"}{" "}
             left
-          </p>
+          </span>
           <div className="selected-content">
             <p
               id="type1"
@@ -76,7 +81,12 @@ const Tasks = (props) => {
               Completed
             </p>
           </div>
-          <p onClick={clearCompletedTasks}>Clear Completed</p>
+          <p
+            className={props.darkMode ? "dark" : null}
+            onClick={clearCompletedTasks}
+          >
+            Clear Completed
+          </p>
         </div>
       </div>
     </React.Fragment>
