@@ -45,10 +45,10 @@ Users should be able to:
 - Semantic HTML5 markup
 - SASS/SCSS
 - Flexbox
-- CSS Grid
 - Desktop-first workflow
 - [React](https://reactjs.org/) - JS library
-- React Beautiful DND - for drag & drop
+- React Beautiful DND - For drag & drop
+- Context API
 
 ### What I learned
 

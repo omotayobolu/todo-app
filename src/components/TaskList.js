@@ -1,20 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import DeleteTask from "../assets/icon-cross.svg";
 import { Draggable } from "react-beautiful-dnd";
+import TaskContext from "./store/TaskContext";
 
 const TaskList = (props) => {
-  const handleDeleteTask = (id) => {
-    const taskList = props.tasks.filter((task) => task.id !== id);
-    props.setTasks(taskList);
-  };
-
-  const handleCompletedTask = (id) => {
-    const taskList = props.tasks.map((task) =>
-      task.id === id ? { ...task, checked: !task.checked } : task
-    );
-    props.setTasks(taskList);
-  };
-
+  const { handleCompletedTask, handleDeleteTask } = useContext(TaskContext);
   return (
     <Draggable
       key={props.task.id.toString()}

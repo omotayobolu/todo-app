@@ -1,40 +1,24 @@
-import React, { useRef, useState } from "react";
-// import Check from "../assets/icon-check.svg";
-// import Cancel from "../assets/icon-cross.svg";
+import React, { useContext, useRef } from "react";
+import TaskContext from "./store/TaskContext";
 
-const AddTask = (props) => {
+const AddTask = () => {
   const inputRef = useRef("");
 
-  const [newTask, setNewTask] = useState("");
-
-  const AddTask = (task) => {
-    const id = props.tasks.length
-      ? props.tasks[props.tasks.length - 1].id + 1
-      : 1;
-    const myNewTask = { id, checked: false, task };
-    const tasksList = [...props.tasks, myNewTask];
-    props.setTasks(tasksList);
-  };
-
-  const handleSubmitTask = (e) => {
-    e.preventDefault();
-    if (!newTask) return;
-    AddTask(newTask);
-    setNewTask("");
-  };
+  const { handleSubmitTask, darkMode, newTask, setNewTask } =
+    useContext(TaskContext);
 
   return (
     <form onSubmit={handleSubmitTask} className="add-item">
       <input
         type="text"
-        className={props.darkMode ? "dark" : null}
+        className={darkMode ? "dark" : null}
         placeholder="Create a new todo.."
         ref={inputRef}
         value={newTask}
         onChange={(e) => setNewTask(e.target.value)}
         required
       />
-      <button className={props.darkMode ? "dark" : null}></button>
+      <button className={darkMode ? "dark" : null}></button>
     </form>
   );
 };

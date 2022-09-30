@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import Moon from "../assets/icon-moon.svg";
 import Sun from "../assets/icon-sun.svg";
 
-const Header = (props) => {
+import TaskContext from "./store/TaskContext";
+
+const Header = () => {
+  const { darkMode, onToggleMode } = useContext(TaskContext);
   return (
     <header>
       <h1>todo</h1>
-      {props.darkMode ? (
-        <img onClick={props.onToggleMode} src={Sun} alt="" />
+      {darkMode ? (
+        <img onClick={onToggleMode} src={Sun} alt="" />
       ) : (
-        <img onClick={props.onToggleMode} src={Moon} alt="moon" />
+        <img onClick={onToggleMode} src={Moon} alt="moon" />
       )}
     </header>
   );
