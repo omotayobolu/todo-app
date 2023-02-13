@@ -60,9 +60,6 @@ $breakpoints: (
 
   @include tablet {
     padding: 4% 20%;
-  }
-
-  @include mobile {
     background-image: url(#{$BackgroundImage}/bg-mobile-light.jpg);
     background-repeat: no-repeat;
     background-size: contain;
@@ -197,69 +194,67 @@ header {
     margin-top: 0.8rem;
   }
 
-  div {
-    ul {
-      width: 100%;
+  ul {
+    width: 100%;
 
-      li {
-        position: relative;
+    li {
+      position: relative;
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid $LightGrayishBlue;
+      display: flex;
+      align-items: center;
+
+      &.dark {
+        border-bottom: 1px solid $VeryDarkGrayishBlue1;
+      }
+
+      label {
+        color: $VeryDarkGrayishBlueLight;
+        font-weight: 400;
+        padding-left: 1.5rem;
+        margin-left: 1rem;
         width: 100%;
-        padding: 0.9rem 1.5rem;
-        border-bottom: 1px solid $LightGrayishBlue;
-        display: flex;
-        align-items: center;
 
         &.dark {
-          border-bottom: 1px solid $VeryDarkGrayishBlue1;
+          color: $LightGrayishBlue;
+        }
+      }
+
+      input[type="checkbox"] {
+        -webkit-appearance: none;
+        position: absolute;
+        border: 1px solid $LightGrayishBlueLight;
+        left: 0;
+        top: 50%;
+        transform: translate(100%, -50%);
+        border-radius: 50%;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+
+        &.dark {
+          border: 1px solid $VeryDarkGrayishBlue1;
         }
 
-        label {
-          color: $VeryDarkGrayishBlueLight;
-          font-weight: 400;
-          padding-left: 1.5rem;
-          margin-left: 1rem;
-          width: 100%;
-
-          &.dark {
-            color: $LightGrayishBlue;
-          }
+        &:hover {
+          border-color: $VeryDarkGrayishBlueLight;
         }
 
-        input[type="checkbox"] {
-          -webkit-appearance: none;
-          position: absolute;
-          border: 1px solid $LightGrayishBlueLight;
-          left: 0;
-          top: 50%;
-          transform: translate(100%, -50%);
-          border-radius: 50%;
-          cursor: pointer;
-          width: 1.5rem;
-          height: 1.5rem;
-
-          &.dark {
-            border: 1px solid $VeryDarkGrayishBlue1;
-          }
-
-          &:hover {
-            border-color: $VeryDarkGrayishBlueLight;
-          }
-
-          &:checked {
-            background-image: url(#{$BackgroundImage}/icon-check.svg),
-              linear-gradient(150deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            border: none;
-          }
+        &:checked {
+          background-image: url(#{$BackgroundImage}/icon-check.svg),
+            linear-gradient(150deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          border: none;
         }
+      }
 
-        img {
-          position: absolute;
-          right: 2rem;
-          cursor: pointer;
-        }
+      img {
+        position: absolute;
+        right: 2rem;
+        cursor: pointer;
       }
     }
   }

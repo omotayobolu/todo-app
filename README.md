@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Github Repo](https://your-solution-url.com)
-- Live Site URL: [Live Site](https://your-live-site-url.com)
+- Solution URL: [Github Repo](https://github.com/omotayobolu/todo-app)
+- Live Site URL: [Live Site](https://todo-app-omotayo.netlify.app/)
 
 ## My process
 
@@ -52,7 +52,7 @@ Users should be able to:
 
 ### What I learned
 
-I learnt how to filter out data that is not necessary.
+I learnt how to filter out data that does not satisfy a condition.
 I learnt how to implement drag and drop to rearrange a list.
 
 ## Author

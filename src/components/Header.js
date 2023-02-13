@@ -5,14 +5,14 @@ import Sun from "../assets/icon-sun.svg";
 import TaskContext from "./store/TaskContext";
 
 const Header = () => {
-  const { darkMode, onToggleMode } = useContext(TaskContext);
+  const { darkMode, ModeToggler } = useContext(TaskContext);
   return (
     <header>
       <h1>todo</h1>
       {darkMode ? (
-        <img onClick={onToggleMode} src={Sun} alt="" />
+        <img onClick={ModeToggler} src={Sun} alt="" />
       ) : (
-        <img onClick={onToggleMode} src={Moon} alt="moon" />
+        <img onClick={ModeToggler} src={Moon} alt="moon" />
       )}
     </header>
   );

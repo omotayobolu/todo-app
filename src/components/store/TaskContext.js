@@ -6,7 +6,7 @@ export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("taskstodo")) || []
   );
-  const [darkMode, setDarkMode] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
   const [active, setActive] = useState("type1");
   const [newTask, setNewTask] = useState("");
 

@@ -18,7 +18,7 @@ const Tasks = () => {
 
   return (
     <React.Fragment>
-      <div>
+      <div className={darkMode ? "dark main-tasks" : "main-tasks"}>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="lists">
             {(provided) => (
@@ -46,7 +46,6 @@ const Tasks = () => {
             )}
           </Droppable>
         </DragDropContext>
-
         <div className={darkMode ? "dark extra-info" : "extra-info"}>
           <span>
             {tasks.length} {tasks.length > 1 ? "items" : "item"} left
